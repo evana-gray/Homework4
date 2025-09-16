@@ -21,7 +21,7 @@ library(dplyr)
 ```{r}
 #relative path preferred
 #main dataset
-whitewine <- read_xlsx("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx")
+whitewine <- as_tibble(read_xlsx("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx"))
 whitewine
 
 #variables sheet
@@ -48,8 +48,9 @@ whitewine$type ="white"
 ## Read red wine file 
 
 ```{r}
-redwine <- read_delim("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/red-wine.csv",
+redwine <- as_tibble(read_delim("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/red-wine.csv",
                       delim = ";")
+                    )
 ```
 
 ## Rename columns
