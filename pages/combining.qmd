@@ -6,4 +6,74 @@ editor_options:
   chunk_output_type: inline
 ---
 
-Answers go here!
+# White wine
+
+## Read white-wine datasets from wd()
+
+```{r}
+library(readxl)
+
+#relative path preferred
+#main dataset
+whitewine <- read_xlsx("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx")
+whitewine
+
+#variables sheet
+variablelist <- read_xlsx("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx",
+                          sheet = "variables")
+variablelist
+```
+
+## Rename Columns
+
+```{r}
+#Use variables vector object from variablelist list to rename whitewine columns
+names(whitewine) <- c(variablelist$Variables)
+```
+
+## Type = "white" Column
+
+```{r}
+whitewine$type ="white"
+```
+
+# Red Wine
+
+## Read red wine file 
+
+```{r}
+redwine <- read_delim("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/red-wine.csv",
+                      delim = ";")
+```
+
+## Rename columns
+
+```{r}
+names(redwine) <- c(variablelist$Variables)
+```
+
+## Type = "red" column
+
+```{r}
+redwine$type = "red"
+```
+
+# Combine white and red datasets
+
+```{r}
+wine_data_full <- bind_rows(whitewine,redwine)
+```
+
+## Full dataset edits
+
+```{r}
+wine_final <- wine_data_full |>
+                filter(quality > 6.5 & alcohol < 132) |>
+                arrange(desc(quality)) |>
+                select(contains("acid"), alcohol, type, quality) |>
+                mutate(
+                  across(alcohol, mean, .names = "mean_{.col}"),
+                  across(alcohol, sd, .names = "sd_{.col}")
+                ) |>
+                group_by(quality)
+```

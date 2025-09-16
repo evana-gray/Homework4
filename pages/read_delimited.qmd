@@ -6,5 +6,66 @@ editor_options:
   chunk_output_type: inline
 ---
 
+```{r}
+library(tidyverse)
+```
 
-Answers go here!
+
+# Read Glass Data
+
+```{r}
+library(tidyverse)
+
+glass <- as.tibble(
+  read_delim("https://www4.stat.ncsu.edu/online/datasets/glass.data", 
+                       delim = ",",
+                        col_names = c("Id", "RI", "Na", "Mg", "Al", "Si", "K", "Ca", "Ba", "Fe", "Type_of_glass"))
+)
+
+glass
+```
+
+## Recode "Type" Variable & Filter Results
+
+```{r}
+#Nested else if per instructions to OVERWRITE type of glass
+glass |> mutate(
+         Type_of_glass = ifelse(Type_of_glass == 1, "building_windows_float_processed",
+            ifelse(Type_of_glass == 2, "building_windows_non_float_processed",
+              ifelse(Type_of_glass == 3, "vehicle_windows_float_processed",
+               ifelse(Type_of_glass == 4, "vehicle_windows_non_float_processed",
+                ifelse(Type_of_glass == 5, "containers",
+                 ifelse(Type_of_glass == 6, "tableware",
+                  ifelse(Type_of_glass == 7, "headlamps","Other")))))))
+                  ) |>
+          filter(Fe < 0.2 & (Type_of_glass == "tableware" | Type_of_glass == "headlamps"))
+
+```
+
+# Read Yeast Data
+
+```{r}
+yeast <- as.tibble(
+                    read_table("https://www4.stat.ncsu.edu/online/datasets/yeast.data",
+                    col_names = c("seq_name", "mcg", "gvh", "alm", "mit", "erl", "pox", "vac", "nuc", "class"))
+)
+
+yeast
+```
+
+## Remove columns and add mean & median columns
+
+```{r}
+#Remove seq_name and nuc column
+#add mean and median - apply single mean and median statement to multiple variables
+yeast <- yeast |> 
+      select(-seq_name, -nuc) |>
+      mutate(
+        across(c(mcg,gvh,alm,mit,erl,pox,vac), mean, .names = "mean_{.col}"),
+        across(c(mcg,gvh,alm,mit,erl,pox,vac), median, .names = "median_{.col}")
+             ) |>
+      group_by(class)
+
+yeast
+```
+
