@@ -280,7 +280,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#relative path preferred</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#main dataset</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>whitewine <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>whitewine <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_xlsx</span>(<span class="st">"C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx"</span>))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>whitewine</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,898 × 12
@@ -343,8 +343,9 @@ Attaching package: 'dplyr'</code></pre>
 <section id="read-red-wine-file" class="level2">
 <h2 class="anchored" data-anchor-id="read-red-wine-file">Read red wine file</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>redwine <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/red-wine.csv"</span>,</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">delim =</span> <span class="st">";"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>redwine <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">read_delim</span>(<span class="st">"C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/red-wine.csv"</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">delim =</span> <span class="st">";"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 1599 Columns: 12
 ── Column specification ────────────────────────────────────────────────────────
