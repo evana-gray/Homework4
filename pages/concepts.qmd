@@ -45,6 +45,7 @@ arrange(
 
 ```{r}
 #New code using |> pipe
+library(dplyr)
 iris_tibble2 <- as.tibble( iris |>
                           select(starts_with("Petal"), Species) |>
                           filter(Petal.Length < 1.55) |>
