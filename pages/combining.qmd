@@ -6,13 +6,18 @@ editor_options:
   chunk_output_type: inline
 ---
 
+```{r}
+library(readxl)
+library(readr)
+
+```
+
+
 # White wine
 
 ## Read white-wine datasets from wd()
 
 ```{r}
-library(readxl)
-
 #relative path preferred
 #main dataset
 whitewine <- read_xlsx("C:/Users/evana/Desktop/NCSU/ST558/HW4/Homework4/white-wine.xlsx")
