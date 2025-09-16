@@ -6,5 +6,50 @@ editor_options:
   chunk_output_type: inline
 ---
 
+# Conceptual Questions
 
-Answers go here!
+-   If your working directory is myfolder/homework/, what relative path would you specify to get the file located at myfolder/mydata.csv?
+
+> readcsv(MyData.csv) will retrieve MyData.csv such that anyone running this program will just need the file in their working directory.
+
+-   What are the major benefits of using R projects?
+
+> R projects establish a working directory, that can be shared, and provide a way to organize the various files and documents that are used to complete work.
+
+-   What is git and what is github?
+
+> Git is a version control software. It can track changes made to a document, or code, and allow authors to retrieve previous versions.
+
+> Github is an online hosting service that stores git versions in a central online location so they can be easily shared.
+
+-   What are the two main differences betwen a tibble and a data.frame?
+
+> Tibbles are printed in such a way that they do not print the entire dataset - only what will fit on the screen.
+
+> Tibbles also show the column formats when they print.
+
+-   Rewrite the following nested function call using BaseR's chaining operator:
+
+```{r}
+#Original nested code indented for clarity
+arrange(
+  filter(
+    select(
+        as_tibble(iris), starts_with("Petal"), Species
+          ), 
+        Petal.Length < 1.55
+        ), 
+  Species
+)
+```
+
+```{r}
+#New code using |> pipe
+iris_tibble2 <- as.tibble( iris |>
+                          select(starts_with("Petal"), Species) |>
+                          filter(Petal.Length < 1.55) |>
+                          arrange(Species)
+                          )
+
+iris_tibble2
+```
