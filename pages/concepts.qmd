@@ -31,6 +31,10 @@ editor_options:
 -   Rewrite the following nested function call using BaseR's chaining operator:
 
 ```{r}
+library(dplyr)
+```
+
+```{r}
 #Original nested code indented for clarity
 arrange(
   filter(
@@ -45,12 +49,10 @@ arrange(
 
 ```{r}
 #New code using |> pipe
-library(dplyr)
-iris_tibble2 <- as.tibble( iris |>
-                          select(starts_with("Petal"), Species) |>
+iris_tibble2 <-  iris |> select(starts_with("Petal"), Species) |>
                           filter(Petal.Length < 1.55) |>
                           arrange(Species)
-                          )
+                          
 
 iris_tibble2
 ```
