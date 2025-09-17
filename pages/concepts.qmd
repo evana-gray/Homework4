@@ -10,7 +10,7 @@ editor_options:
 
 -   If your working directory is myfolder/homework/, what relative path would you specify to get the file located at myfolder/mydata.csv?
 
-> readcsv(MyData.csv) will retrieve MyData.csv so long as anyone running this program will just need the file in their working directory.
+> readcsv(../MyData.csv) will retrieve MyData.csv as anyone running this program will just need the file one folder higher in their working directory.
 
 -   What are the major benefits of using R projects?
 
